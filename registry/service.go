@@ -70,9 +70,7 @@ func (s *DefaultService) ServiceConfig() *registrytypes.ServiceConfig {
 	servConfig.AllowNondistributableArtifactsHostnames = append(servConfig.AllowNondistributableArtifactsHostnames, s.config.ServiceConfig.AllowNondistributableArtifactsHostnames...)
 	servConfig.InsecureRegistryCIDRs = append(servConfig.InsecureRegistryCIDRs, s.config.ServiceConfig.InsecureRegistryCIDRs...)
 
-	for key, value := range s.config.ServiceConfig.IndexConfigs {
-		servConfig.IndexConfigs[key] = value
-	}
+	copy(servConfig.IndexConfigs, s.config.ServiceConfig.IndexConfigs)
 
 	servConfig.Mirrors = append(servConfig.Mirrors, s.config.ServiceConfig.Mirrors...)
 

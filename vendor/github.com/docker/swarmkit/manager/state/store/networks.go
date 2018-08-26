@@ -38,9 +38,7 @@ func init() {
 		},
 		Restore: func(tx Tx, snapshot *api.StoreSnapshot) error {
 			toStoreObj := make([]api.StoreObject, len(snapshot.Networks))
-			for i, x := range snapshot.Networks {
-				toStoreObj[i] = x
-			}
+			copy(toStoreObj, snapshot.Networks)
 			return RestoreTable(tx, tableNetwork, toStoreObj)
 		},
 		ApplyStoreAction: func(tx Tx, sa api.StoreAction) error {

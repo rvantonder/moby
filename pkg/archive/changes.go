@@ -261,9 +261,7 @@ func (info *FileInfo) addChanges(oldInfo *FileInfo, changes *[]Change) {
 	// otherwise any previous delete/change is considered recursive
 	oldChildren := make(map[string]*FileInfo)
 	if oldInfo != nil && info.isDir() {
-		for k, v := range oldInfo.children {
-			oldChildren[k] = v
-		}
+		copy(oldChildren, oldInfo.children)
 	}
 
 	for name, newChild := range info.children {

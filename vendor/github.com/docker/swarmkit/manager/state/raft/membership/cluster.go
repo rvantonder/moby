@@ -58,9 +58,7 @@ func NewCluster() *Cluster {
 func (c *Cluster) Members() map[uint64]*Member {
 	members := make(map[uint64]*Member)
 	c.mu.RLock()
-	for k, v := range c.members {
-		members[k] = v
-	}
+	copy(members, c.members)
 	c.mu.RUnlock()
 	return members
 }

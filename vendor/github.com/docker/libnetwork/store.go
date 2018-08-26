@@ -309,9 +309,7 @@ func (c *controller) networkWatchLoop(nw *netWatch, ep *endpoint, ecCh <-chan da
 
 			delEpMap := make(map[string]*endpoint)
 			renameEpMap := make(map[string]bool)
-			for k, v := range nw.remoteEps {
-				delEpMap[k] = v
-			}
+			copy(delEpMap, nw.remoteEps)
 
 			for _, lEp := range epl {
 				if _, ok := nw.localEps[lEp.ID()]; ok {

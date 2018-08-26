@@ -211,9 +211,7 @@ func (s *Section) KeysHash() map[string]string {
 	}
 
 	hash := map[string]string{}
-	for key, value := range s.keysHash {
-		hash[key] = value
-	}
+	copy(hash, s.keysHash)
 	return hash
 }
 

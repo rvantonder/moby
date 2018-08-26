@@ -80,9 +80,7 @@ func createChainIDFromParent(parent layer.ChainID, dgsts ...layer.DiffID) layer.
 func (ls *mockLayerStore) Map() map[layer.ChainID]layer.Layer {
 	layers := map[layer.ChainID]layer.Layer{}
 
-	for k, v := range ls.layers {
-		layers[k] = v
-	}
+	copy(layers, ls.layers)
 
 	return layers
 }

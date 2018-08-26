@@ -54,9 +54,7 @@ func (term *TermInfo) Parse(attr string, params ...interface{}) (string, error) 
 	ps.dynamicVar = make(map[byte]stacker, 26)
 	ps.parameters = make([]stacker, len(params))
 	// Convert the parameters to insert them into the parser struct.
-	for i, x := range params {
-		ps.parameters[i] = x
-	}
+	copy(ps.parameters, params)
 	// Recursively walk and return.
 	result, err := ps.walk(str)
 	return result, err

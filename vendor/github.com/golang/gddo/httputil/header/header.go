@@ -58,9 +58,7 @@ func init() {
 // Copy returns a shallow copy of the header.
 func Copy(header http.Header) http.Header {
 	h := make(http.Header)
-	for k, vs := range header {
-		h[k] = vs
-	}
+	copy(h, header)
 	return h
 }
 

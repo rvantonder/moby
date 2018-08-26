@@ -346,9 +346,7 @@ func mergeMetadata(m1, m2 pb.OpMetadata) pb.OpMetadata {
 		if m1.Description == nil {
 			m1.Description = make(map[string]string)
 		}
-		for k, v := range m2.Description {
-			m1.Description[k] = v
-		}
+		copy(m1.Description, m2.Description)
 	}
 	if m2.ExportCache != nil {
 		m1.ExportCache = m2.ExportCache
@@ -373,9 +371,7 @@ func WithDescription(m map[string]string) ConstraintsOpt {
 		if c.Metadata.Description == nil {
 			c.Metadata.Description = map[string]string{}
 		}
-		for k, v := range m {
-			c.Metadata.Description[k] = v
-		}
+		copy(c.Metadata.Description, m)
 	})
 }
 

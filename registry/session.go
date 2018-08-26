@@ -718,9 +718,7 @@ func (r *Session) putImageRequest(u string, headers map[string][]string, body []
 		return nil, err
 	}
 	req.ContentLength = int64(len(body))
-	for k, v := range headers {
-		req.Header[k] = v
-	}
+	copy(req.Header, headers)
 	response, err := r.client.Do(req)
 	if err != nil {
 		return nil, err

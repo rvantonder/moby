@@ -339,9 +339,7 @@ func (jl *Solver) loadUnlocked(v, parent Vertex, j *Job, cache map[Vertex]Vertex
 			}
 			parentState.childVtx[dgst] = struct{}{}
 
-			for id, c := range parentState.cache {
-				st.cache[id] = c
-			}
+			copy(st.cache, parentState.cache)
 		}
 	}
 

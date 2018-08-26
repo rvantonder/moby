@@ -355,9 +355,7 @@ func (s int64Slice) Less(i, j int) bool { return s[i] < s[j] }
 
 func copyMap(m map[int64]string) map[int64]string {
 	n := make(map[int64]string)
-	for k, v := range m {
-		n[k] = v
-	}
+	copy(n, m)
 	return n
 }
 

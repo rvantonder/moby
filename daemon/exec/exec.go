@@ -105,9 +105,7 @@ func NewStore() *Store {
 func (e *Store) Commands() map[string]*Config {
 	e.RLock()
 	byID := make(map[string]*Config, len(e.byID))
-	for id, config := range e.byID {
-		byID[id] = config
-	}
+	copy(byID, e.byID)
 	e.RUnlock()
 	return byID
 }

@@ -88,9 +88,7 @@ func (t userAgentTransport) RoundTrip(req *http.Request) (*http.Response, error)
 	}
 	newReq := *req
 	newReq.Header = make(http.Header)
-	for k, vv := range req.Header {
-		newReq.Header[k] = vv
-	}
+	copy(newReq.Header, req.Header)
 	// TODO(cbro): append to existing User-Agent header?
 	newReq.Header["User-Agent"] = []string{t.userAgent}
 	return rt.RoundTrip(&newReq)

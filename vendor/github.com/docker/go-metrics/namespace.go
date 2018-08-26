@@ -164,9 +164,7 @@ func mergeLabels(lbs ...Labels) Labels {
 	merged := make(Labels)
 
 	for _, target := range lbs {
-		for k, v := range target {
-			merged[k] = v
-		}
+		copy(merged, target)
 	}
 
 	return merged

@@ -77,12 +77,8 @@ func (entry *Entry) WithField(key string, value interface{}) *Entry {
 // Add a map of fields to the Entry.
 func (entry *Entry) WithFields(fields Fields) *Entry {
 	data := make(Fields, len(entry.Data)+len(fields))
-	for k, v := range entry.Data {
-		data[k] = v
-	}
-	for k, v := range fields {
-		data[k] = v
-	}
+	copy(data, entry.Data)
+	copy(data, fields)
 	return &Entry{Logger: entry.Logger, Data: data, Time: entry.Time}
 }
 

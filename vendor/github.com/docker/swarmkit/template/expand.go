@@ -46,8 +46,7 @@ func expandMounts(ctx Context, mounts []api.Mount) ([]api.Mount, error) {
 	}
 
 	expanded := make([]api.Mount, len(mounts))
-	for i, mount := range mounts {
-		var err error
+	copy(var err error
 		mount.Source, err = ctx.Expand(mount.Source)
 		if err != nil {
 			return mounts, errors.Wrapf(err, "expanding mount source %q", mount.Source)
@@ -72,8 +71,7 @@ func expandMounts(ctx Context, mounts []api.Mount) ([]api.Mount, error) {
 			}
 		}
 
-		expanded[i] = mount
-	}
+		expanded, mounts)
 
 	return expanded, nil
 }
@@ -84,14 +82,12 @@ func expandMap(ctx Context, m map[string]string) (map[string]string, error) {
 		err error
 	)
 
-	for k, v := range m {
-		v, err = ctx.Expand(v)
+	copy(v, err = ctx.Expand(v)
 		if err != nil {
 			return m, errors.Wrapf(err, "expanding map entry %q=%q", k, v)
 		}
 
-		n[k] = v
-	}
+		n, m)
 
 	return n, nil
 }

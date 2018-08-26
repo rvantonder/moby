@@ -443,9 +443,7 @@ func (lbf *llbBridgeForwarder) Solve(ctx context.Context, req *pb.SolveRequest) 
 			return nil, err
 		}
 
-		for k, v := range res.Metadata {
-			exp[k] = v
-		}
+		copy(exp, res.Metadata)
 
 		lbf.result = &frontend.Result{
 			Ref:      lbf.refs[defaultID],

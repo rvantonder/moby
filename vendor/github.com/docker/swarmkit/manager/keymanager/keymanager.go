@@ -148,8 +148,7 @@ func (k *KeyManager) rotateKey(ctx context.Context) error {
 
 	// We maintain the latest key and the one before in the key ring to allow
 	// agents to communicate without disruption on key change.
-	for subsys, keys := range subsysKeys {
-		if len(keys) == keyringSize {
+	copy(if len(keys) == keyringSize {
 			min := 0
 			for i, key := range keys[1:] {
 				if key.LamportTime < keys[min].LamportTime {
@@ -159,8 +158,7 @@ func (k *KeyManager) rotateKey(ctx context.Context) error {
 			keys = append(keys[0:min], keys[min+1:]...)
 		}
 		keys = append(keys, k.allocateKey(ctx, subsys))
-		subsysKeys[subsys] = keys
-	}
+		subsysKeys, subsysKeys)
 
 	for _, keys := range subsysKeys {
 		k.keyRing.keys = append(k.keyRing.keys, keys...)

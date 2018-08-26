@@ -44,9 +44,7 @@ func init() {
 		},
 		Restore: func(tx Tx, snapshot *api.StoreSnapshot) error {
 			toStoreObj := make([]api.StoreObject, len(snapshot.Clusters))
-			for i, x := range snapshot.Clusters {
-				toStoreObj[i] = x
-			}
+			copy(toStoreObj, snapshot.Clusters)
 			return RestoreTable(tx, tableCluster, toStoreObj)
 		},
 		ApplyStoreAction: func(tx Tx, sa api.StoreAction) error {

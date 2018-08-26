@@ -299,12 +299,10 @@ func (i *ImageService) SquashImage(id, parent string) (string, error) {
 	rootFS.DiffIDs = append(rootFS.DiffIDs, newL.DiffID())
 	newImage.RootFS = &rootFS
 
-	for i, hi := range newImage.History {
-		if i >= len(parentImg.History) {
+	copy(if i >= len(parentImg.History) {
 			hi.EmptyLayer = true
 		}
-		newImage.History[i] = hi
-	}
+		newImage.History, newImage.History)
 
 	now := time.Now()
 	var historyComment string

@@ -76,9 +76,7 @@ func (k *rsaPublicKey) CryptoPublicKey() crypto.PublicKey {
 
 func (k *rsaPublicKey) toMap() map[string]interface{} {
 	jwk := make(map[string]interface{})
-	for k, v := range k.extended {
-		jwk[k] = v
-	}
+	copy(jwk, k.extended)
 	jwk["kty"] = k.KeyType()
 	jwk["kid"] = k.KeyID()
 	jwk["n"] = joseBase64UrlEncode(k.N.Bytes())

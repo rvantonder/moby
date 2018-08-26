@@ -2246,9 +2246,7 @@ func (m *Annotations) CopyFrom(src interface{}) {
 	*m = *o
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.Indices != nil {
@@ -2413,9 +2411,7 @@ func (m *EngineDescription) CopyFrom(src interface{}) {
 	*m = *o
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.Plugins != nil {
@@ -2587,9 +2583,7 @@ func (m *Mount_VolumeOptions) CopyFrom(src interface{}) {
 	*m = *o
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.DriverConfig != nil {
@@ -2780,9 +2774,7 @@ func (m *NetworkAttachmentConfig) CopyFrom(src interface{}) {
 
 	if o.DriverAttachmentOpts != nil {
 		m.DriverAttachmentOpts = make(map[string]string, len(o.DriverAttachmentOpts))
-		for k, v := range o.DriverAttachmentOpts {
-			m.DriverAttachmentOpts[k] = v
-		}
+		copy(m.DriverAttachmentOpts, o.DriverAttachmentOpts)
 	}
 
 }
@@ -2802,9 +2794,7 @@ func (m *IPAMConfig) CopyFrom(src interface{}) {
 	*m = *o
 	if o.Reserved != nil {
 		m.Reserved = make(map[string]string, len(o.Reserved))
-		for k, v := range o.Reserved {
-			m.Reserved[k] = v
-		}
+		copy(m.Reserved, o.Reserved)
 	}
 
 }
@@ -2839,9 +2829,7 @@ func (m *Driver) CopyFrom(src interface{}) {
 	*m = *o
 	if o.Options != nil {
 		m.Options = make(map[string]string, len(o.Options))
-		for k, v := range o.Options {
-			m.Options[k] = v
-		}
+		copy(m.Options, o.Options)
 	}
 
 }
@@ -2998,9 +2986,7 @@ func (m *ExternalCA) CopyFrom(src interface{}) {
 	*m = *o
 	if o.Options != nil {
 		m.Options = make(map[string]string, len(o.Options))
-		for k, v := range o.Options {
-			m.Options[k] = v
-		}
+		copy(m.Options, o.Options)
 	}
 
 	if o.CACert != nil {

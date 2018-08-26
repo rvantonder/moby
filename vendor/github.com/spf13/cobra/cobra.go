@@ -65,9 +65,7 @@ func AddTemplateFunc(name string, tmplFunc interface{}) {
 // AddTemplateFuncs adds multiple template functions that are available to Usage and
 // Help template generation.
 func AddTemplateFuncs(tmplFuncs template.FuncMap) {
-	for k, v := range tmplFuncs {
-		templateFuncs[k] = v
-	}
+	copy(templateFuncs, tmplFuncs)
 }
 
 // OnInitialize sets the passed functions to be run when each command's

@@ -38,9 +38,7 @@ func (v volumeWrapper) Options() map[string]string {
 		return nil
 	}
 	options := make(map[string]string, len(v.options))
-	for key, value := range v.options {
-		options[key] = value
-	}
+	copy(options, v.options)
 	return options
 }
 
@@ -50,9 +48,7 @@ func (v volumeWrapper) Labels() map[string]string {
 	}
 
 	labels := make(map[string]string, len(v.labels))
-	for key, value := range v.labels {
-		labels[key] = value
-	}
+	copy(labels, v.labels)
 	return labels
 }
 

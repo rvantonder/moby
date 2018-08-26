@@ -1104,16 +1104,12 @@ func (m *ListNodesRequest_Filters) CopyFrom(src interface{}) {
 
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.NodeLabels != nil {
 		m.NodeLabels = make(map[string]string, len(o.NodeLabels))
-		for k, v := range o.NodeLabels {
-			m.NodeLabels[k] = v
-		}
+		copy(m.NodeLabels, o.NodeLabels)
 	}
 
 	if o.Memberships != nil {
@@ -1326,9 +1322,7 @@ func (m *ListTasksRequest_Filters) CopyFrom(src interface{}) {
 
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.ServiceIDs != nil {
@@ -1564,9 +1558,7 @@ func (m *ListServicesRequest_Filters) CopyFrom(src interface{}) {
 
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.NamePrefixes != nil {
@@ -1745,9 +1737,7 @@ func (m *ListNetworksRequest_Filters) CopyFrom(src interface{}) {
 
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.NamePrefixes != nil {
@@ -1858,9 +1848,7 @@ func (m *ListClustersRequest_Filters) CopyFrom(src interface{}) {
 
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.NamePrefixes != nil {
@@ -2071,9 +2059,7 @@ func (m *ListSecretsRequest_Filters) CopyFrom(src interface{}) {
 
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.NamePrefixes != nil {
@@ -2289,9 +2275,7 @@ func (m *ListConfigsRequest_Filters) CopyFrom(src interface{}) {
 
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.NamePrefixes != nil {

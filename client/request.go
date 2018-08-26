@@ -233,9 +233,7 @@ func (cli *Client) addHeaders(req *http.Request, headers headers) *http.Request 
 	}
 
 	if headers != nil {
-		for k, v := range headers {
-			req.Header[k] = v
-		}
+		copy(req.Header, headers)
 	}
 	return req
 }

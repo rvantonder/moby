@@ -396,9 +396,7 @@ func ParseHostURL(host string) (*url.URL, error) {
 // CustomHTTPHeaders returns the custom http headers stored by the client.
 func (cli *Client) CustomHTTPHeaders() map[string]string {
 	m := make(map[string]string)
-	for k, v := range cli.customHTTPHeaders {
-		m[k] = v
-	}
+	copy(m, cli.customHTTPHeaders)
 	return m
 }
 

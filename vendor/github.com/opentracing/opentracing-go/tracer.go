@@ -272,9 +272,7 @@ func (t Tags) Apply(o *StartSpanOptions) {
 	if o.Tags == nil {
 		o.Tags = make(map[string]interface{})
 	}
-	for k, v := range t {
-		o.Tags[k] = v
-	}
+	copy(o.Tags, t)
 }
 
 // Tag may be passed as a StartSpanOption to add a tag to new spans,

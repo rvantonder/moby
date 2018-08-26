@@ -59,8 +59,6 @@ func (ck *CacheKey) clone() *CacheKey {
 		output: ck.output,
 		ids:    map[*cacheManager]string{},
 	}
-	for cm, id := range ck.ids {
-		nk.ids[cm] = id
-	}
+	copy(nk.ids, ck.ids)
 	return nk
 }

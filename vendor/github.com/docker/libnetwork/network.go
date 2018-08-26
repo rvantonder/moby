@@ -331,9 +331,7 @@ func (c *IpamConf) CopyTo(dstC *IpamConf) error {
 	dstC.Gateway = c.Gateway
 	if c.AuxAddresses != nil {
 		dstC.AuxAddresses = make(map[string]string, len(c.AuxAddresses))
-		for k, v := range c.AuxAddresses {
-			dstC.AuxAddresses[k] = v
-		}
+		copy(dstC.AuxAddresses, c.AuxAddresses)
 	}
 	return nil
 }
@@ -343,9 +341,7 @@ func (i *IpamInfo) CopyTo(dstI *IpamInfo) error {
 	dstI.PoolID = i.PoolID
 	if i.Meta != nil {
 		dstI.Meta = make(map[string]string)
-		for k, v := range i.Meta {
-			dstI.Meta[k] = v
-		}
+		copy(dstI.Meta, i.Meta)
 	}
 
 	dstI.AddressSpace = i.AddressSpace
@@ -443,9 +439,7 @@ func (n *network) applyConfigurationTo(to *network) error {
 	}
 	if len(n.generic) > 0 {
 		to.generic = options.Generic{}
-		for k, v := range n.generic {
-			to.generic[k] = v
-		}
+		copy(to.generic, n.generic)
 	}
 	return nil
 }
@@ -480,15 +474,11 @@ func (n *network) CopyTo(o datastore.KVObject) error {
 	if dstN.labels == nil {
 		dstN.labels = make(map[string]string, len(n.labels))
 	}
-	for k, v := range n.labels {
-		dstN.labels[k] = v
-	}
+	copy(dstN.labels, n.labels)
 
 	if n.ipamOptions != nil {
 		dstN.ipamOptions = make(map[string]string, len(n.ipamOptions))
-		for k, v := range n.ipamOptions {
-			dstN.ipamOptions[k] = v
-		}
+		copy(dstN.ipamOptions, n.ipamOptions)
 	}
 
 	for _, v4conf := range n.ipamV4Config {
@@ -730,9 +720,7 @@ func NetworkOptionGeneric(generic map[string]interface{}) NetworkOption {
 		if val, ok := generic[netlabel.Internal]; ok {
 			n.internal = val.(bool)
 		}
-		for k, v := range generic {
-			n.generic[k] = v
-		}
+		copy(n.generic, generic)
 	}
 }
 
@@ -1901,9 +1889,7 @@ func (n *network) Labels() map[string]string {
 	defer n.Unlock()
 
 	var lbls = make(map[string]string, len(n.labels))
-	for k, v := range n.labels {
-		lbls[k] = v
-	}
+	copy(lbls, n.labels)
 
 	return lbls
 }

@@ -1099,9 +1099,7 @@ func (m *ContainerSpec) CopyFrom(src interface{}) {
 	*m = *o
 	if o.Labels != nil {
 		m.Labels = make(map[string]string, len(o.Labels))
-		for k, v := range o.Labels {
-			m.Labels[k] = v
-		}
+		copy(m.Labels, o.Labels)
 	}
 
 	if o.Command != nil {

@@ -63,9 +63,7 @@ func WithImageService(imageService imagesapi.ImagesClient) ServicesOpt {
 func WithSnapshotters(snapshotters map[string]snapshots.Snapshotter) ServicesOpt {
 	return func(s *services) {
 		s.snapshotters = make(map[string]snapshots.Snapshotter)
-		for n, sn := range snapshotters {
-			s.snapshotters[n] = sn
-		}
+		copy(s.snapshotters, snapshotters)
 	}
 }
 

@@ -68,9 +68,7 @@ func (i *ImageService) ImagesPrune(ctx context.Context, pruneFilters filters.Arg
 	// Filter intermediary images and get their unique size
 	allLayers := make(map[layer.ChainID]layer.Layer)
 	for _, ls := range i.layerStores {
-		for k, v := range ls.Map() {
-			allLayers[k] = v
-		}
+		copy(allLayers, ls.Map())
 	}
 	topImages := map[image.ID]*image.Image{}
 	for id, img := range allImages {

@@ -108,9 +108,7 @@ func (ls LabelSet) Before(o LabelSet) bool {
 // Clone returns a copy of the label set.
 func (ls LabelSet) Clone() LabelSet {
 	lsn := make(LabelSet, len(ls))
-	for ln, lv := range ls {
-		lsn[ln] = lv
-	}
+	copy(lsn, ls)
 	return lsn
 }
 
@@ -118,13 +116,9 @@ func (ls LabelSet) Clone() LabelSet {
 func (l LabelSet) Merge(other LabelSet) LabelSet {
 	result := make(LabelSet, len(l))
 
-	for k, v := range l {
-		result[k] = v
-	}
+	copy(result, l)
 
-	for k, v := range other {
-		result[k] = v
-	}
+	copy(result, other)
 
 	return result
 }

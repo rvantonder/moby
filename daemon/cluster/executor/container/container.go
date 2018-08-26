@@ -245,15 +245,11 @@ func (c *containerConfig) labels() map[string]string {
 	)
 
 	// base labels are those defined in the spec.
-	for k, v := range c.spec().Labels {
-		labels[k] = v
-	}
+	copy(labels, c.spec().Labels)
 
 	// we then apply the overrides from the task, which may be set via the
 	// orchestrator.
-	for k, v := range c.task.Annotations.Labels {
-		labels[k] = v
-	}
+	copy(labels, c.task.Annotations.Labels)
 
 	// finally, we apply the system labels, which override all labels.
 	for k, v := range system {
@@ -311,9 +307,7 @@ func convertMount(m api.Mount) enginemount.Mount {
 		}
 		if m.VolumeOptions.Labels != nil {
 			mount.VolumeOptions.Labels = make(map[string]string, len(m.VolumeOptions.Labels))
-			for k, v := range m.VolumeOptions.Labels {
-				mount.VolumeOptions.Labels[k] = v
-			}
+			copy(mount.VolumeOptions.Labels, m.VolumeOptions.Labels)
 		}
 		if m.VolumeOptions.DriverConfig != nil {
 			mount.VolumeOptions.DriverConfig = &enginemount.Driver{
@@ -321,9 +315,7 @@ func convertMount(m api.Mount) enginemount.Mount {
 			}
 			if m.VolumeOptions.DriverConfig.Options != nil {
 				mount.VolumeOptions.DriverConfig.Options = make(map[string]string, len(m.VolumeOptions.DriverConfig.Options))
-				for k, v := range m.VolumeOptions.DriverConfig.Options {
-					mount.VolumeOptions.DriverConfig.Options[k] = v
-				}
+				copy(mount.VolumeOptions.DriverConfig.Options, m.VolumeOptions.DriverConfig.Options)
 			}
 		}
 	}

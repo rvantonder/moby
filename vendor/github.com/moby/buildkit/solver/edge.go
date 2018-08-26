@@ -494,12 +494,10 @@ func (e *edge) recalcCurrentState() {
 
 	for i, dep := range e.deps {
 		if i == 0 {
-			for id, k := range dep.keyMap {
-				if _, ok := e.keyMap[id]; ok {
+			copy(if _, ok := e.keyMap[id]; ok {
 					continue
 				}
-				newKeys[id] = k
-			}
+				newKeys, dep.keyMap)
 		} else {
 			for id := range newKeys {
 				if _, ok := dep.keyMap[id]; !ok {

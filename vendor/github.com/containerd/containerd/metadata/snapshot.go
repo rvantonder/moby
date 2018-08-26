@@ -231,9 +231,7 @@ func overlayInfo(info, overlay snapshots.Info) snapshots.Info {
 	if info.Labels == nil {
 		info.Labels = overlay.Labels
 	} else {
-		for k, v := range overlay.Labels {
-			overlay.Labels[k] = v
-		}
+		copy(overlay.Labels, overlay.Labels)
 	}
 	return info
 }

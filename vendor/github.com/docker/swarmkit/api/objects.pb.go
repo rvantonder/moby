@@ -593,9 +593,7 @@ func (m *NetworkAttachment) CopyFrom(src interface{}) {
 
 	if o.DriverAttachmentOpts != nil {
 		m.DriverAttachmentOpts = make(map[string]string, len(o.DriverAttachmentOpts))
-		for k, v := range o.DriverAttachmentOpts {
-			m.DriverAttachmentOpts[k] = v
-		}
+		copy(m.DriverAttachmentOpts, o.DriverAttachmentOpts)
 	}
 
 }

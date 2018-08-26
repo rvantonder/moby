@@ -103,9 +103,7 @@ func merge(userConf, imageConf *containertypes.Config) error {
 	if len(userConf.Volumes) == 0 {
 		userConf.Volumes = imageConf.Volumes
 	} else {
-		for k, v := range imageConf.Volumes {
-			userConf.Volumes[k] = v
-		}
+		copy(userConf.Volumes, imageConf.Volumes)
 	}
 
 	if userConf.StopSignal == "" {

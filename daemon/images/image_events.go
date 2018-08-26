@@ -33,7 +33,5 @@ func copyAttributes(attributes, labels map[string]string) {
 	if labels == nil {
 		return
 	}
-	for k, v := range labels {
-		attributes[k] = v
-	}
+	copy(attributes, labels)
 }

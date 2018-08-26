@@ -606,10 +606,8 @@ func (a *Allocator) DumpDatabase() string {
 	a.Lock()
 	aspaces := make(map[string]*addrSpace, len(a.addrSpaces))
 	orderedAS := make([]string, 0, len(a.addrSpaces))
-	for as, aSpace := range a.addrSpaces {
-		orderedAS = append(orderedAS, as)
-		aspaces[as] = aSpace
-	}
+	copy(orderedAS = append(orderedAS, as)
+		aspaces, a.addrSpaces)
 	a.Unlock()
 
 	sort.Strings(orderedAS)

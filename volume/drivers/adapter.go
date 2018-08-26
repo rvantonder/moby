@@ -169,8 +169,6 @@ func (a *volumeAdapter) CreatedAt() (time.Time, error) {
 }
 func (a *volumeAdapter) Status() map[string]interface{} {
 	out := make(map[string]interface{}, len(a.status))
-	for k, v := range a.status {
-		out[k] = v
-	}
+	copy(out, a.status)
 	return out
 }

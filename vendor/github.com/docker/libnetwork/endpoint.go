@@ -268,9 +268,7 @@ func (ep *endpoint) CopyTo(o datastore.KVObject) error {
 	copy(dstEp.myAliases, ep.myAliases)
 
 	dstEp.generic = options.Generic{}
-	for k, v := range ep.generic {
-		dstEp.generic[k] = v
-	}
+	copy(dstEp.generic, ep.generic)
 
 	return nil
 }
@@ -927,9 +925,7 @@ func (ep *endpoint) getFirstInterfaceAddress() net.IP {
 // in a Dictionary of Key-Value pair
 func EndpointOptionGeneric(generic map[string]interface{}) EndpointOption {
 	return func(ep *endpoint) {
-		for k, v := range generic {
-			ep.generic[k] = v
-		}
+		copy(ep.generic, generic)
 	}
 }
 

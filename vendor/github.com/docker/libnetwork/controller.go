@@ -433,9 +433,7 @@ func (c *controller) makeDriverConfig(ntype string) map[string]interface{} {
 
 	drvCfg, ok := c.cfg.Daemon.DriverCfg[ntype]
 	if ok {
-		for k, v := range drvCfg.(map[string]interface{}) {
-			config[k] = v
-		}
+		copy(config, drvCfg.(map[string]interface{}))
 	}
 
 	for k, v := range c.cfg.Scopes {

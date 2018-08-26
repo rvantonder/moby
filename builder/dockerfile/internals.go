@@ -369,23 +369,17 @@ func copyRunConfig(runConfig *container.Config, modifiers ...runConfigModifier) 
 
 	if copy.Volumes != nil {
 		copy.Volumes = make(map[string]struct{}, len(runConfig.Volumes))
-		for k, v := range runConfig.Volumes {
-			copy.Volumes[k] = v
-		}
+		copy(copy.Volumes, runConfig.Volumes)
 	}
 
 	if copy.ExposedPorts != nil {
 		copy.ExposedPorts = make(nat.PortSet, len(runConfig.ExposedPorts))
-		for k, v := range runConfig.ExposedPorts {
-			copy.ExposedPorts[k] = v
-		}
+		copy(copy.ExposedPorts, runConfig.ExposedPorts)
 	}
 
 	if copy.Labels != nil {
 		copy.Labels = make(map[string]string, len(runConfig.Labels))
-		for k, v := range runConfig.Labels {
-			copy.Labels[k] = v
-		}
+		copy(copy.Labels, runConfig.Labels)
 	}
 
 	for _, modifier := range modifiers {

@@ -266,9 +266,7 @@ func FileInfoHeader(fi os.FileInfo, link string) (*Header, error) {
 		h.ChangeTime = sys.ChangeTime
 		if sys.Xattrs != nil {
 			h.Xattrs = make(map[string]string)
-			for k, v := range sys.Xattrs {
-				h.Xattrs[k] = v
-			}
+			copy(h.Xattrs, sys.Xattrs)
 		}
 		if sys.Typeflag == TypeLink {
 			// hard link

@@ -12,12 +12,7 @@ import (
 
 	"golang.org/x/sys/unix"
 	"gotest.tools/assert"
-	is "gotest.tools/assert/cmp"
-	"gotest.tools/skip"
-)
-
-const (
-	tempUser = "tempuser"
+	is "gotestcopy(tree, subtree)user"
 )
 
 type node struct {

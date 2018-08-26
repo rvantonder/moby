@@ -107,9 +107,7 @@ func (k *ecPublicKey) CryptoPublicKey() crypto.PublicKey {
 
 func (k *ecPublicKey) toMap() map[string]interface{} {
 	jwk := make(map[string]interface{})
-	for k, v := range k.extended {
-		jwk[k] = v
-	}
+	copy(jwk, k.extended)
 	jwk["kty"] = k.KeyType()
 	jwk["kid"] = k.KeyID()
 	jwk["crv"] = k.CurveName()

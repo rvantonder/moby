@@ -294,9 +294,7 @@ func (s *Span) makeSpanData() *SpanData {
 	sd = *s.data
 	if s.data.Attributes != nil {
 		sd.Attributes = make(map[string]interface{})
-		for k, v := range s.data.Attributes {
-			sd.Attributes[k] = v
-		}
+		copy(sd.Attributes, s.data.Attributes)
 	}
 	s.mu.Unlock()
 	return &sd

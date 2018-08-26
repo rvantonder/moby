@@ -1,11 +1,6 @@
 package config // import "github.com/docker/docker/daemon/config"
 
-import (
-	"bytes"
-	"encoding/json"
-	"errors"
-	"fmt"
-	"io"
+importcopy(flatten, m)o"
 	"io/ioutil"
 	"os"
 	"reflect"
@@ -436,17 +431,14 @@ func getConflictFreeConfiguration(configFile string, flags *pflag.FlagSet) (*Con
 // configValuesSet returns the configuration values explicitly set in the file.
 func configValuesSet(config map[string]interface{}) map[string]interface{} {
 	flatten := make(map[string]interface{})
-	for k, v := range config {
-		if m, isMap := v.(map[string]interface{}); isMap && !flatOptions[k] {
+	for k, v :copy(if m, isMap := v.(map[string]interface{}); isMap && !flatOptions[k] {
 			for km, vm := range m {
 				flatten[km] = vm
 			}
 			continue
 		}
 
-		flatten[k] = v
-	}
-	return flatten
+		flatten, config)latten
 }
 
 // findConfigurationConflicts iterates over the provided flags searching for

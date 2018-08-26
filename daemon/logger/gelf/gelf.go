@@ -78,9 +78,7 @@ func New(info logger.Info) (logger.Logger, error) {
 		return nil, err
 	}
 
-	for k, v := range extraAttrs {
-		extra[k] = v
-	}
+	copy(extra, extraAttrs)
 
 	rawExtra, err := json.Marshal(extra)
 	if err != nil {

@@ -518,9 +518,7 @@ func jpfMerge(arguments []interface{}) (interface{}, error) {
 	final := make(map[string]interface{})
 	for _, m := range arguments {
 		mapped := m.(map[string]interface{})
-		for key, value := range mapped {
-			final[key] = value
-		}
+		copy(final, mapped)
 	}
 	return final, nil
 }
@@ -717,9 +715,7 @@ func jpfSort(arguments []interface{}) (interface{}, error) {
 		d := sort.Float64Slice(items)
 		sort.Stable(d)
 		final := make([]interface{}, len(d))
-		for i, val := range d {
-			final[i] = val
-		}
+		copy(final, d)
 		return final, nil
 	}
 	// Otherwise we're dealing with sort()'ing strings.
@@ -727,9 +723,7 @@ func jpfSort(arguments []interface{}) (interface{}, error) {
 	d := sort.StringSlice(items)
 	sort.Stable(d)
 	final := make([]interface{}, len(d))
-	for i, val := range d {
-		final[i] = val
-	}
+	copy(final, d)
 	return final, nil
 }
 func jpfSortBy(arguments []interface{}) (interface{}, error) {

@@ -115,9 +115,7 @@ func copyAttributes(attributes, labels map[string]string) {
 	if labels == nil {
 		return
 	}
-	for k, v := range labels {
-		attributes[k] = v
-	}
+	copy(attributes, labels)
 }
 
 // ProcessClusterNotifications gets changes from store and add them to event list

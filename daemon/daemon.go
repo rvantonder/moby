@@ -741,7 +741,7 @@ func NewDaemon(ctx context.Context, config *config.Config, pluginStore *plugin.S
 		grpc.WithDefaultCallOptions(grpc.MaxCallSendMsgSize(defaults.DefaultMaxSendMsgSize)),
 	}
 	if config.ContainerdAddr != "" {
-		d.containerdCli, err = containerd.New(config.ContainerdAddr, containerd.WithDefaultNamespace(ContainersNamespace), containerd.WithDialOpts(gopts))
+		d.containerdCli, err = containerd.New(config.ContainerdAddr, containerd.WithDefaultNamespace(ContainersNamespace), containerd.WithDialOpts(gopts), containerd.WithTimeout(60*time.Second))
 		if err != nil {
 			return nil, errors.Wrapf(err, "failed to dial %q", config.ContainerdAddr)
 		}
@@ -753,7 +753,7 @@ func NewDaemon(ctx context.Context, config *config.Config, pluginStore *plugin.S
 		// Windows is not currently using containerd, keep the
 		// client as nil
 		if config.ContainerdAddr != "" {
-			pluginCli, err = containerd.New(config.ContainerdAddr, containerd.WithDefaultNamespace(pluginexec.PluginNamespace), containerd.WithDialOpts(gopts))
+			pluginCli, err = containerd.New(config.ContainerdAddr, containerd.WithDefaultNamespace(pluginexec.PluginNamespace), containerd.WithDialOpts(gopts), containerd.WithTimeout(60*time.Second))
 			if err != nil {
 				return nil, errors.Wrapf(err, "failed to dial %q", config.ContainerdAddr)
 			}
@@ -815,9 +815,7 @@ func NewDaemon(ctx context.Context, config *config.Config, pluginStore *plugin.S
 	}
 
 	lgrMap := make(map[string]image.LayerGetReleaser)
-	for os, ls := range layerStores {
-		lgrMap[os] = ls
-	}
+	copy(lgrMap, layerStores)
 	imageStore, err := image.NewImageStore(ifs, lgrMap)
 	if err != nil {
 		return nil, err

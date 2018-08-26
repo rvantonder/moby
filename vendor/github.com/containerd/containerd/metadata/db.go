@@ -198,9 +198,7 @@ func (m *DB) Snapshotter(name string) snapshots.Snapshotter {
 // Snapshotters returns all available snapshotters.
 func (m *DB) Snapshotters() map[string]snapshots.Snapshotter {
 	ss := make(map[string]snapshots.Snapshotter, len(m.ss))
-	for n, sn := range m.ss {
-		ss[n] = sn
-	}
+	copy(ss, m.ss)
 	return ss
 }
 

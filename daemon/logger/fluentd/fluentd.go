@@ -160,9 +160,7 @@ func (f *fluentd) Log(msg *logger.Message) error {
 		"source":         msg.Source,
 		"log":            string(msg.Line),
 	}
-	for k, v := range f.extra {
-		data[k] = v
-	}
+	copy(data, f.extra)
 	if msg.PLogMetaData != nil {
 		data["partial_message"] = "true"
 	}

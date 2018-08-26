@@ -38,9 +38,7 @@ func init() {
 		},
 		Restore: func(tx Tx, snapshot *api.StoreSnapshot) error {
 			toStoreObj := make([]api.StoreObject, len(snapshot.Configs))
-			for i, x := range snapshot.Configs {
-				toStoreObj[i] = x
-			}
+			copy(toStoreObj, snapshot.Configs)
 			return RestoreTable(tx, tableConfig, toStoreObj)
 		},
 		ApplyStoreAction: func(tx Tx, sa api.StoreAction) error {

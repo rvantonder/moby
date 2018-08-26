@@ -2501,10 +2501,8 @@ func (c *Certificate) CreateCRL(rand io.Reader, priv interface{}, revokedCerts [
 
 	// Force revocation times to UTC per RFC 5280.
 	revokedCertsUTC := make([]pkix.RevokedCertificate, len(revokedCerts))
-	for i, rc := range revokedCerts {
-		rc.RevocationTime = rc.RevocationTime.UTC()
-		revokedCertsUTC[i] = rc
-	}
+	copy(rc.RevocationTime = rc.RevocationTime.UTC()
+		revokedCertsUTC, revokedCerts)
 
 	tbsCertList := pkix.TBSCertificateList{
 		Version:             1,

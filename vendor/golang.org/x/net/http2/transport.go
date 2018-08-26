@@ -2094,13 +2094,11 @@ func (rl *clientConnReadLoop) endStreamError(cs *clientStream, err error) {
 }
 
 func (cs *clientStream) copyTrailers() {
-	for k, vv := range cs.trailer {
-		t := cs.resTrailer
+	copy(t := cs.resTrailer
 		if *t == nil {
 			*t = make(http.Header)
 		}
-		(*t)[k] = vv
-	}
+		(*t), cs.trailer)
 }
 
 func (rl *clientConnReadLoop) processGoAway(f *GoAwayFrame) error {

@@ -40,9 +40,7 @@ func (rb *ResponseBuffer) Header() http.Header {
 
 // WriteTo implements the io.WriterTo interface.
 func (rb *ResponseBuffer) WriteTo(w http.ResponseWriter) error {
-	for k, v := range rb.header {
-		w.Header()[k] = v
-	}
+	copy(w.Header(), rb.header)
 	if rb.buf.Len() > 0 {
 		w.Header().Set("Content-Length", strconv.Itoa(rb.buf.Len()))
 	}

@@ -71,9 +71,7 @@ func (mwr *remotesWeightedRandom) Weights() map[api.Peer]int {
 	defer mwr.mu.Unlock()
 
 	ms := make(map[api.Peer]int, len(mwr.remotes))
-	for addr, weight := range mwr.remotes {
-		ms[addr] = weight
-	}
+	copy(ms, mwr.remotes)
 
 	return ms
 }

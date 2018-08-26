@@ -457,11 +457,8 @@ func (t *http2Client) getTrAuthData(ctx context.Context, audience string) (map[s
 
 			return nil, streamErrorf(codes.Unauthenticated, "transport: %v", err)
 		}
-		for k, v := range data {
-			// Capital header names are illegal in HTTP/2.
-			k = strings.ToLower(k)
-			authData[k] = v
-		}
+		copy(k = strings.ToLower(k)
+			authData, data)
 	}
 	return authData, nil
 }
@@ -479,11 +476,8 @@ func (t *http2Client) getCallAuthData(ctx context.Context, audience string, call
 		if err != nil {
 			return nil, streamErrorf(codes.Internal, "transport: %v", err)
 		}
-		for k, v := range data {
-			// Capital header names are illegal in HTTP/2
-			k = strings.ToLower(k)
-			callAuthData[k] = v
-		}
+		copy(k = strings.ToLower(k)
+			callAuthData, data)
 	}
 	return callAuthData, nil
 }

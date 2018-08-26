@@ -56,9 +56,7 @@ func GetAll(r *http.Request) map[interface{}]interface{} {
 	mutex.RLock()
 	if context, ok := data[r]; ok {
 		result := make(map[interface{}]interface{}, len(context))
-		for k, v := range context {
-			result[k] = v
-		}
+		copy(result, context)
 		mutex.RUnlock()
 		return result
 	}
@@ -72,9 +70,7 @@ func GetAllOk(r *http.Request) (map[interface{}]interface{}, bool) {
 	mutex.RLock()
 	context, ok := data[r]
 	result := make(map[interface{}]interface{}, len(context))
-	for k, v := range context {
-		result[k] = v
-	}
+	copy(result, context)
 	mutex.RUnlock()
 	return result, ok
 }

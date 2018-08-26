@@ -398,9 +398,7 @@ func (ls *layerStore) Map() map[ChainID]Layer {
 
 	layers := map[ChainID]Layer{}
 
-	for k, v := range ls.layerMap {
-		layers[k] = v
-	}
+	copy(layers, ls.layerMap)
 
 	return layers
 }

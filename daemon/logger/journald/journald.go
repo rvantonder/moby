@@ -81,9 +81,7 @@ func New(info logger.Info) (logger.Logger, error) {
 	if err != nil {
 		return nil, err
 	}
-	for k, v := range extraAttrs {
-		vars[k] = v
-	}
+	copy(vars, extraAttrs)
 	return &journald{vars: vars, readers: readerList{readers: make(map[*logger.LogWatcher]*logger.LogWatcher)}}, nil
 }
 
@@ -105,9 +103,7 @@ func validateLogOpt(cfg map[string]string) error {
 
 func (s *journald) Log(msg *logger.Message) error {
 	vars := map[string]string{}
-	for k, v := range s.vars {
-		vars[k] = v
-	}
+	copy(vars, s.vars)
 	if msg.PLogMetaData != nil {
 		vars["CONTAINER_PARTIAL_MESSAGE"] = "true"
 	}

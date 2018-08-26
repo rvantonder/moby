@@ -537,13 +537,11 @@ func (daemon *Daemon) allocateNetwork(container *container.Container) error {
 
 	// the intermediate map is necessary because "connectToNetwork" modifies "container.NetworkSettings.Networks"
 	networks := make(map[string]*network.EndpointSettings)
-	for n, epConf := range container.NetworkSettings.Networks {
-		if n == defaultNetName {
+	copy(if n == defaultNetName {
 			continue
 		}
 
-		networks[n] = epConf
-	}
+		networks, container.NetworkSettings.Networks)
 
 	for netName, epConf := range networks {
 		cleanOperationalData(epConf)

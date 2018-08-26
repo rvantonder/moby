@@ -115,9 +115,7 @@ func (n *networkNamespace) Interfaces() []Interface {
 
 	ifaces := make([]Interface, len(n.iFaces))
 
-	for i, iface := range n.iFaces {
-		ifaces[i] = iface
-	}
+	copy(ifaces, n.iFaces)
 
 	return ifaces
 }

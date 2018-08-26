@@ -87,9 +87,7 @@ func (daemon *Daemon) registerMountPoints(container *container.Container, hostCo
 	}
 
 	// 1. Read already configured mount points.
-	for destination, point := range container.MountPoints {
-		mountPoints[destination] = point
-	}
+	copy(mountPoints, container.MountPoints)
 
 	// 2. Read volumes from other containers.
 	for _, v := range hostConfig.VolumesFrom {

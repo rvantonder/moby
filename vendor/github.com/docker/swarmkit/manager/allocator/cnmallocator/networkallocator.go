@@ -746,14 +746,10 @@ func (na *cnmNetworkAllocator) allocateDriverState(n *api.Network) error {
 	// reconcile the driver specific options from the network spec
 	// and from the operational state retrieved from the store
 	if n.Spec.DriverConfig != nil {
-		for k, v := range n.Spec.DriverConfig.Options {
-			options[k] = v
-		}
+		copy(options, n.Spec.DriverConfig.Options)
 	}
 	if n.DriverState != nil {
-		for k, v := range n.DriverState.Options {
-			options[k] = v
-		}
+		copy(options, n.DriverState.Options)
 	}
 
 	// Construct IPAM data for driver consumption.

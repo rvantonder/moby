@@ -155,9 +155,7 @@ func (sb *sandbox) Labels() map[string]interface{} {
 	sb.Lock()
 	defer sb.Unlock()
 	opts := make(map[string]interface{}, len(sb.config.generic))
-	for k, v := range sb.config.generic {
-		opts[k] = v
-	}
+	copy(opts, sb.config.generic)
 	return opts
 }
 
@@ -342,9 +340,7 @@ func (sb *sandbox) Endpoints() []Endpoint {
 	defer sb.Unlock()
 
 	endpoints := make([]Endpoint, len(sb.endpoints))
-	for i, ep := range sb.endpoints {
-		endpoints[i] = ep
-	}
+	copy(endpoints, sb.endpoints)
 	return endpoints
 }
 
@@ -1123,9 +1119,7 @@ func OptionGeneric(generic map[string]interface{}) SandboxOption {
 		if sb.config.generic == nil {
 			sb.config.generic = make(map[string]interface{}, len(generic))
 		}
-		for k, v := range generic {
-			sb.config.generic[k] = v
-		}
+		copy(sb.config.generic, generic)
 	}
 }
 
